@@ -1,12 +1,23 @@
+package menu;
+
+import Customers.Customer;
+import Managers.CustomerManager;
+import Managers.StorageManager;
+import Products.Product;
+import Storages.PointOfSale;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import Tools.ChoiceFrom;
+import Tools.Counters;
+
 public class MenuChoiceSecond {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     //второй выбор в меню
-    static void menuChoice2(){
+     public void menuChoice2(){
         while (true) {
             System.out.println("1 - открыть пункт продаж");
             System.out.println("2 - закрыть пункт продаж");
@@ -36,6 +47,10 @@ public class MenuChoiceSecond {
             //закрыть пвз
             else if (choice == 2){
                 List<PointOfSale> pointOfSaleList = Counters.posCounter();
+                if (pointOfSaleList.isEmpty()){
+                    System.out.println("нет пвз");
+                    return;
+                }
                 int choicePos;
                 while(true){
                     choicePos = scanner.nextInt();
@@ -50,6 +65,10 @@ public class MenuChoiceSecond {
             }
             else if (choice == 3){
                 List<PointOfSale> pointOfSaleList = Counters.posCounter();
+                if (pointOfSaleList.isEmpty()){
+                    System.out.println("нет пвз");
+                    return;
+                }
                 int choicePos;
                 while(true) {
                     choicePos = scanner.nextInt();
@@ -160,6 +179,10 @@ public class MenuChoiceSecond {
             //инфо о товарах
             else if (choice == 6){
                 List<PointOfSale> pointOfSaleList = Counters.posCounter();
+                if (pointOfSaleList.isEmpty()){
+                    System.out.println("нет пвз");
+                    return;
+                }
                 while(true){
                     try{
                         int choiceToClose = scanner.nextInt();
@@ -183,6 +206,10 @@ public class MenuChoiceSecond {
             //доходность
             else {
                 List<PointOfSale> pointOfSaleList = Counters.posCounter();
+                if (pointOfSaleList.isEmpty()){
+                    System.out.println("нет пвз");
+                    return;
+                }
                 PointOfSale pos = pointOfSaleList.get(ChoiceFrom.choiceFromList(pointOfSaleList)-1);
                 System.out.println(pos.getIncome());
             }

@@ -1,3 +1,7 @@
+package Managers;
+
+import Storages.Storage;
+import Employee.Employee;
 import java.util.*;
 
 public class EmployeeManager {

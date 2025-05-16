@@ -1,3 +1,5 @@
+package Products;
+
 import java.util.UUID;
 
 public class Product {

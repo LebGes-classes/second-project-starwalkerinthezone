@@ -1,3 +1,7 @@
+package Managers;
+
+import Storages.Storage;
+
 import java.util.HashMap;
 import java.util.Map;
 

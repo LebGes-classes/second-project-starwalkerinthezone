@@ -1,3 +1,16 @@
+package Tools;
+
+import Customers.Customer;
+import Employee.Employee;
+import Managers.CustomerManager;
+import Managers.EmployeeManager;
+import Managers.StorageManager;
+import PositionEnums.PointOfSalePositions;
+import PositionEnums.WareHousePositions;
+import Storages.PointOfSale;
+import Storages.Storage;
+import Storages.Warehouse;
+
 import java.util.ArrayList;
 import java.util.List;
 

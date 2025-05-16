@@ -1,14 +1,19 @@
+package menu;
+
+import Serialization.DeserializerJson;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuChoiceThird {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     //выбор в меню 3
-    static void menuChoice3() {
+     public void menuChoice3() {
         while (true) {
             try{
                 System.out.println("Введите путь к работникам.json");
                 String employee = scanner.nextLine().trim();
+
                 System.out.println("Введите путь к покупателям");
                 String customer = scanner.nextLine().trim();
                 System.out.println("Введите путь к хранилищам");

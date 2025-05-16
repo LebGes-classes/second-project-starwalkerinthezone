@@ -1,9 +1,11 @@
+package menu;
+
 import java.util.Scanner;
 
 public class Menu {
     //изначальное меню
-    private static final Scanner scanner = new Scanner(System.in);
-    static int menu(){
+    private final Scanner scanner = new Scanner(System.in);
+    public int menu(){
         System.out.println("Команды:");
         System.out.println("1 - работа со складами");
         System.out.println("2 - работа с пунктами продаж");

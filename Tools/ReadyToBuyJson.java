@@ -1,3 +1,7 @@
+package Tools;
+
+import Products.Product;
+import Storages.Warehouse;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

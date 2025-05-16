@@ -1,8 +1,15 @@
+package Serialization;
+
+import Customers.Customer;
+import Managers.CustomerManager;
+import Managers.EmployeeManager;
+import Managers.StorageManager;
+import Storages.Storage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import Employee.Employee;
 
 import java.io.*;
-import java.util.List;
 import java.util.Map;
 
 public class DeserializerJson {

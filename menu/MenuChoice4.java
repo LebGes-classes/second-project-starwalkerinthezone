@@ -1,12 +1,25 @@
+package menu;
+
+import Managers.EmployeeManager;
+import Managers.StorageManager;
+import PositionEnums.PointOfSalePositions;
+import PositionEnums.WareHousePositions;
+import Storages.PointOfSale;
+import Storages.Storage;
+import Storages.Warehouse;
+import Tools.ChoiceFrom;
+import Tools.Counters;
+import Employee.Employee;
+
 import java.util.List;
 import java.util.Scanner;
 public class MenuChoice4 {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
 
 
     //выбор меню 4
-    static void menuChoice4() {
+     public void menuChoice4() {
         while (true) {
             System.out.println("1 - найм сотрудника");
             System.out.println("2 - уволить сотрудника");
@@ -45,12 +58,20 @@ public class MenuChoice4 {
                 Storage storage = null;
                 if (choiceStore == 0) {
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
 
                     storage = warehouseList.get(ChoiceFrom.choiceFromList(warehouseList));
 
                 }
                 if (choiceStore == 1) {
                     List<PointOfSale> poses = Counters.posCounter();
+                    if (poses.isEmpty()){
+                        System.out.println("нет пвз");
+                        return;
+                    }
 
                     storage = poses.get(ChoiceFrom.choiceFromList(poses) - 1);
                 }
@@ -69,6 +90,10 @@ public class MenuChoice4 {
             //увольнение сотрудника
             if (choice == 2){
                 List<Employee> employees = Counters.empCounter();
+                if(employees.isEmpty()){
+                    System.out.println("нет работников");
+                    return;
+                }
                 Employee employee = employees.get(ChoiceFrom.choiceFromList(employees)-1);
                 Storage fromStorage = StorageManager.getStorage(employee.getLocation());
                 EmployeeManager.deleteEmployeePos(employee, fromStorage);
@@ -76,6 +101,10 @@ public class MenuChoice4 {
             //смена ответственного лица
             if(choice == 3){
                 List<Employee> employees = Counters.empCounter();
+                if(employees.isEmpty()){
+                    System.out.println("нет работников");
+                    return;
+                }
                 Employee employee = employees.get(ChoiceFrom.choiceFromList(employees)-1);
                 Storage fromStorage = StorageManager.getStorage(employee.getLocation());
                 System.out.println("склад или пункт продаж? 0 : 1");
@@ -91,13 +120,19 @@ public class MenuChoice4 {
                 Storage storage = null;
                 if (choiceStore == 0) {
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
-
+                    if(warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     storage = warehouseList.get(ChoiceFrom.choiceFromList(warehouseList));
 
                 }
                 if (choiceStore == 1) {
                     List<PointOfSale> poses = Counters.posCounter();
-
+                    if(poses.isEmpty()){
+                        System.out.println("нет пвз");
+                        return;
+                    }
                     storage = poses.get(ChoiceFrom.choiceFromList(poses) - 1);
                 }
                 String position = "";

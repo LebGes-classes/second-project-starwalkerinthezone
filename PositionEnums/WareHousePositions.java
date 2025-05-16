@@ -1,3 +1,5 @@
+package PositionEnums;
+
 public enum WareHousePositions {
     LOADER ("Грузчик"),
     WAREHOUSEGUARD ("Охранник склада"),

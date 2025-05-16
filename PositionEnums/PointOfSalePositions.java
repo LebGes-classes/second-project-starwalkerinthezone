@@ -1,3 +1,5 @@
+package PositionEnums;
+
 public enum PointOfSalePositions {
     CASHIER ("Кассир");
 

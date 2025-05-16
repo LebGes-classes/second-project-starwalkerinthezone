@@ -1,11 +1,18 @@
+package menu;
+
+import Managers.CustomerManager;
+import Managers.EmployeeManager;
+import Managers.StorageManager;
+import Serialization.SerializerJson;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuChoice5 {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     //меню выбор 5
     //сериализация
-    static void menuChoice5() {
+     public void menuChoice5() {
 
         try {
             System.out.println("1 - сохранить");

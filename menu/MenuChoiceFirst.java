@@ -1,11 +1,21 @@
+package menu;
+
+import Managers.StorageManager;
+import Products.Product;
+import Storages.PointOfSale;
+import Storages.Warehouse;
+import Tools.ChoiceFrom;
+import Tools.Counters;
+import Tools.FailIn;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuChoiceFirst {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     //первый выбор в меню
-    static void menuChoice1(){
+     public void menuChoice1(){
         while(true) {
             System.out.println("1 - открытие нового склада");
             System.out.println("2 - закрытие склада");
@@ -42,6 +52,10 @@ public class MenuChoiceFirst {
                 if(choice == 2){
                     System.out.println("Выберите какой склад закрыть:");
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     while(true){
                         try{
                             int choiceToClose = scanner.nextInt();
@@ -60,6 +74,10 @@ public class MenuChoiceFirst {
                 //инфо о складе
                 if (choice == 3){
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     while(true){
                         try{
                             int choiceToClose = scanner.nextInt();
@@ -82,6 +100,10 @@ public class MenuChoiceFirst {
                 //инфо о товарах на складе
                 if (choice == 4){
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     while(true){
                         try{
                             int choiceToClose = scanner.nextInt();
@@ -94,6 +116,7 @@ public class MenuChoiceFirst {
                             break;
                         } catch (RuntimeException e) {
                             System.out.println("неверная команда");
+
                         }
                     }
                 }
@@ -101,6 +124,10 @@ public class MenuChoiceFirst {
                 if (choice == 5){
                     System.out.println("Выберите товар и ячейку");
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     while(true){
                         try{
                             int choiceToClose = scanner.nextInt();
@@ -152,6 +179,10 @@ public class MenuChoiceFirst {
                 if (choice == 6){
                     System.out.println("Выберите склад, товар и пункт продаж");
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     int choiceToClose = ChoiceFrom.choiceFromList(warehouseList);
                     Warehouse warehouse = (Warehouse) StorageManager.getStorage(warehouseList.get(choiceToClose-1).getId());
                     List<Product> products = new ArrayList<>();
@@ -189,6 +220,10 @@ public class MenuChoiceFirst {
                 //узнать доходность
                 if(choice==8){
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     Warehouse warehouse = warehouseList.get(ChoiceFrom.choiceFromList(warehouseList)-1);
                     System.out.println(warehouse.getIncome());
                 }
@@ -197,14 +232,41 @@ public class MenuChoiceFirst {
                     System.out.println("Введите имя продукта");
                     String productName = scanner.nextLine().trim();
                     System.out.println("Введите цену продукта");
-                    int productPrice = scanner.nextInt();
+                    int productPrice;
+                    if (scanner.hasNextInt()){
+                        productPrice = scanner.nextInt();
+                    }
+                    else{
+                        FailIn.failIn();
+                        break;
+                    }
+
+
                     scanner.nextLine();
                     System.out.println("Введите кол-во продукта");
-                    int productAmount = scanner.nextInt();
-                    Product newProduct = Product.newProduct(productName, productPrice, productAmount);
+                    int productAmount;
+                    if (scanner.hasNextInt()){
+                        productAmount = scanner.nextInt();
+                    }
+                    else{
+                        FailIn.failIn();
+                        break;
+                    }
+
+
+
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     System.out.println("В какой склад?");
                     Warehouse warehouse = warehouseList.get(ChoiceFrom.choiceFromList(warehouseList)-1);
+                    if (warehouse.getIdToWarehouseCell().isEmpty()){
+                        System.out.println("нет ячеек склада");
+                        break;
+                    }
+                    Product newProduct = Product.newProduct(productName, productPrice, productAmount);
                     List<Warehouse.WarehouseCell> warehouseCells = new ArrayList<>();
                     int counterCell = 0;
                     System.out.println("Выберите ячейку");
@@ -229,6 +291,10 @@ public class MenuChoiceFirst {
                 if (choice == 10){
                     System.out.println("в каком складе?");
                     List<Warehouse> warehouseList = Counters.warehouseCounter();
+                    if (warehouseList.isEmpty()){
+                        System.out.println("нет складов");
+                        return;
+                    }
                     Warehouse warehouse = (Warehouse) StorageManager.getStorage(warehouseList.get(ChoiceFrom.choiceFromList(warehouseList)-1).getId());
                     System.out.println("Введите наименование ячейки");
                     String name = scanner.nextLine().trim();

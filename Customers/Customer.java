@@ -1,3 +1,8 @@
+package Customers;
+
+import Managers.StorageManager;
+import Storages.PointOfSale;
+
 import java.util.*;
 
 public class Customer {

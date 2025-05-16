@@ -1,5 +1,8 @@
+package Managers;
+
 import java.util.HashMap;
 import java.util.Map;
+import Customers.Customer;
 
 public class CustomerManager {
     private static Map<String, Customer> idToCustomer = new HashMap<>();
